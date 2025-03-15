@@ -42,6 +42,9 @@ LIST DequeueLast(LIST l){
 }
 
 LIST EnqueueOrdered(LIST l, itemType item){
+    if(isEmpty(l) | itemCompare(item,l->item) <= 0){
+        
+    }
     return l;
 }
 

@@ -4,17 +4,20 @@
 #define BOOL int
 #define FALSE 0
 #define TRUE (!FALSE)
-#define TITOLO_LENGTH 20
-#define TIPO_LETTORE 0
-#define TIPO_CASAED 1
+#define AGENTE_LENGTH 30
+#define TYPE_AGENTE 0
+#define TYPE_INVESTOR 1
 
 /*** Elemento base contenuto nella lista ***/
 typedef struct
 {
-    char titolo[TITOLO_LENGTH + 1];
-    int copies;
-    int tipo;
+    char agenteName[AGENTE_LENGTH + 1];
+    int quantity;
+    int price;
+    int minPrice;
     int sockfd;
+    int type;
+    int ricavi;
 } ItemType;
 
 /* Nodo della lista (per uso interno) */
@@ -83,7 +86,11 @@ LIST Dequeue(LIST l, ItemType item);
 /* Stampa a video un elemento della lista */
 void PrintItem(ItemType item);
 
+void PrintRicavi(ItemType item);
+
 /* Stampa a video la lista (esegue PrintItem() su tutti gli elementi) */
 void PrintList(LIST l);
+
+int itemCompare(ItemType item1, ItemType item2);
 
 #endif

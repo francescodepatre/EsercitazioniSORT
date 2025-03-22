@@ -15,7 +15,7 @@
 
 int itemCompare(ItemType item1, ItemType item2)
 {
-    if (item1.titolo == item2.tipo) /*** esempio ***/
+    if (item1.quantity >= item2.pazienti) /*** esempio ***/
         return 0;
     else
         return -1;
@@ -225,7 +225,7 @@ LIST Dequeue(LIST l, ItemType item)
 
 void PrintItem(ItemType item)
 {
-    printf("\nTitle: %f\nCopies: %d\n", item.titolo, item.copies);
+    printf("Nome centro: %s\nQuantità: %d\n", item.nome, item.requests);
 }
 
 /* Stampa a video la lista (esegue PrintItem() su tutti gli elementi) */

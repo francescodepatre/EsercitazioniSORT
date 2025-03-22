@@ -4,17 +4,19 @@
 #define BOOL int
 #define FALSE 0
 #define TRUE (!FALSE)
-#define TITOLO_LENGTH 20
-#define TIPO_LETTORE 0
-#define TIPO_CASAED 1
+#define NOME_LENGTH 50
+#define TIPO_CENTRO 0
+#define TIPO_FORNITORE 1
 
 /*** Elemento base contenuto nella lista ***/
 typedef struct
 {
-    char titolo[TITOLO_LENGTH + 1];
-    int copies;
-    int tipo;
+    char nome[NOME_LENGTH + 1];
+    int quantity;
+    int requests;
+    int pazienti;
     int sockfd;
+    int tipo;
 } ItemType;
 
 /* Nodo della lista (per uso interno) */

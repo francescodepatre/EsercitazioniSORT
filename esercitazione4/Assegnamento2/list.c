@@ -15,7 +15,7 @@
 
 int itemCompare(ItemType item1, ItemType item2)
 {
-    if (item1.titolo == item2.tipo) /*** esempio ***/
+    if (item1.agenteName == item2.agenteName)
         return 0;
     else
         return -1;
@@ -225,10 +225,14 @@ LIST Dequeue(LIST l, ItemType item)
 
 void PrintItem(ItemType item)
 {
-    printf("\nTitle: %f\nCopies: %d\n", item.titolo, item.copies);
+    printf("\nAgent: %s\nQuantity: %d\nPrice: %d\nMinPrice: %d\n", item.agenteName, item.quantity, item.price, item.minPrice);
 }
 
-/* Stampa a video la lista (esegue PrintItem() su tutti gli elementi) */
+void PrintRicavi(ItemType item)
+{
+    printf("\nAgent: %s\nQuantity: %d\nPrice: %d\nMinPrice: %d\nRicavi: %d\n", item.agenteName, item.quantity, item.price, item.minPrice, item.ricavi);
+}
+
 void PrintList(LIST l)
 {
     LIST tmp = l;

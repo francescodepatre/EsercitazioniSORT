@@ -4,27 +4,18 @@
 
 #include <unistd.h>
 #include <netdb.h>
-#include <stdbool.h>
+
 #include "list.h"
 
-char *host_name = "127.0.0.1"; /* local host */
+char *host_name = "127.0.0.1";
 int port = 8000;
 
 int main(int argc, char *argv[])
 {
-	ItemType msg;
-	int answer;
-
-	if (argc < 3)
+	if (argc < 2)
 	{
-		fprintf(stderr, "%s titolo copie \n", argv[0]);
-		exit(1);
-	}
-	else
-	{
-		strncpy(msg.titolo, argv[1], TITOLO_LENGTH);
-		msg.copies = atoi(argv[2]);
-		msg.tipo = TIPO_CASAED;
+		printf("\nUsage: %s 'player_name'\n\n", argv[0]);
+		return -1;
 	}
 
 	struct sockaddr_in serv_addr;
@@ -38,7 +29,7 @@ int main(int argc, char *argv[])
 
 	bzero(&serv_addr, sizeof(serv_addr));
 	serv_addr.sin_family = AF_INET;
-	serv_addr.sin_addr.s_addr = ((struct in_addr *)(server->h_addr_list[0]))->s_addr;
+	serv_addr.sin_addr.s_addr = ((struct in_addr *)(server->h_addr))->s_addr;
 	serv_addr.sin_port = htons(port);
 
 	int sockfd = socket(PF_INET, SOCK_STREAM, 0);
@@ -54,20 +45,33 @@ int main(int argc, char *argv[])
 		exit(1);
 	}
 
-	printf("Sending book title...\n");
+	// QUI GESTISCO L'INVIO AL SERVER
+
+	itemType msg;
+	strcpy(msg.nome, argv[1]);
+	msg.num_partite = 0;
+	msg.punteggio = 0;
+	msg.sockfd = 0;
+
 	if (send(sockfd, &msg, sizeof(msg), 0) == -1)
 	{
-		perror("Error on send\n");
+		perror("Error sending partecipation\n");
 		exit(1);
 	}
 
-	if (recv(sockfd, &answer, sizeof(answer), 0) == -1)
+	printf("\nMessage sent. Waiting for the start of the game...\n");
+
+	// QUA RICEVO IL RISULTATO
+	int score;
+	if (recv(sockfd, &score, sizeof(score), 0) == -1)
 	{
-		perror("Error on send\n");
+		perror("Error receiving score from server\n");
 		exit(1);
 	}
 
-	printf("Response from server OK\n");
+	printf("\nMy score is %d\n\n", score);
+
 	close(sockfd);
+
 	return 0;
 }

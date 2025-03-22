@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
 
 	if (argc < 2)
 	{
-		fprintf("%s titolo.\n", argv[0]);
+		fprintf(stderr, "%s titolo.\n", argv[0]);
 		exit(1);
 	}
 	else

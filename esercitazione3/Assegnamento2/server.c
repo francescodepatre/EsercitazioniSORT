@@ -26,9 +26,9 @@ int main()
 
 	struct sockaddr_in serv_addr;
 	struct sockaddr_in cli_addr;
-	int id;
-	LIST bookList;
-	bool availability;
+	// int id;
+	// LIST bookList;
+	// bool availability;
 
 	int sockfd = socket(PF_INET, SOCK_STREAM, 0);
 	if (sockfd == -1)
@@ -83,20 +83,20 @@ int main()
 		// QUI ricevo il messaggio
 		if (msg.tipo == TIPO_LETTORE)
 		{
-			libro = Find(libri, msg.titolo);
+			libro = Find(libri, msg);
 			if (libro != NULL)
 			{
 				// Ho il libro
 				printf("Libro trovato\n");
 				answer = 1;
-				if (send(newsockfd, &answer, sizeof(answer)) == -1)
+				if (send(newsockfd, &answer, sizeof(answer), 0) == -1)
 				{
 					perror("Error on send");
 					exit(1);
 				}
 				close(newsockfd);
 				// aggiorno la disponibilità
-				libro->copies--;
+				libro->copies -= 1;
 				if (libro->copies == 0)
 				{
 					libri = Dequeue(libri, *libro);
@@ -113,7 +113,7 @@ int main()
 		{
 			// gestione casa ed
 			answer = 1;
-			if (send(newsockfd, &answer, sizeof(answer)) == -1)
+			if (send(newsockfd, &answer, sizeof(answer), 0) == -1)
 			{
 				perror("Error on send");
 				exit(1);
@@ -125,7 +125,7 @@ int main()
 			while (msg.copies > 0 && lettore != NULL)
 			{
 				PrintItem(*lettore);
-				if (send(lettore->sockfd, &answer, sizeof(answer)) == -1)
+				if (send(lettore->sockfd, &answer, sizeof(answer), 0) == -1)
 				{
 					perror("Error on send");
 					exit(1);

@@ -58,14 +58,12 @@ int main(int argc, char *argv[])
         exit(1);
     }
 
-    printf("devo mandare");
     if (send(sockfd, &msg, sizeof(msg), 0) == -1)
     {
         perror("Error on send");
         close(sockfd);
         exit(1);
     }
-    printf("mandato");
 
     printf("Waiting offer response...\n");
     if (recv(sockfd, &offer, sizeof(offer), 0) == -1)

@@ -95,14 +95,14 @@ int main()
 
     while (1)
     {
-        printf("\nWaiting for a new connection...\n");
+        printf("Waiting for a new connection...\n");
         if (stocks != NULL)
         {
             PrintList(stocks);
         }
         else
         {
-            printf("List is null!");
+            printf("No stocks available!\n");
         }
 
         int newsockfd = accept(sockfd, (struct sockaddr *)&cli_addr, &address_size);
@@ -130,14 +130,12 @@ int main()
             printf("Investor connected!\n");
             msg.sockfd = newsockfd;
             sendList(stocks, newsockfd);
-
             if (recv(newsockfd, &choice, sizeof(choice), 0) == -1)
             {
                 perror("Error on receive");
                 exit(1);
             }
             close(newsockfd);
-
             stock = Find(stocks, choice);
             updatePrice(stocks, choice);
             if ((stock->quantity == 0) || (stock->price < stock->minPrice))
@@ -169,8 +167,6 @@ int main()
             close(newsockfd);
             break;
         }
-
-        // close(newsockfd);
     }
 
     close(sockfd);

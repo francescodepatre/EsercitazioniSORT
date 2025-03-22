@@ -85,7 +85,7 @@ int main(int argc, char *argv[])
     printf("Stocks available:\n");
     PrintList(stocks);
 
-    printf("Enter stock name:\n");
+    printf("Enter stock name: ");
     scanf("%s", stockName);
 
     strncpy(stockChoice.agenteName, stockName, sizeof(stockName));
@@ -97,7 +97,7 @@ int main(int argc, char *argv[])
         exit(1);
     }
 
-    printf("Stock purchased!\nClosing...");
+    printf("Stock purchased!\nClosing\n");
     close(sockfd);
     return 0;
 }

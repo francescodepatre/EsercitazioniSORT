@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
 
     if (argc < 4)
     {
-        fprintf("%s <nome> <quantity> <min_requests>\n", argv[0]);
+        fprintf(stderr, "%s <nome> <quantity> <min_requests>\n", argv[0]);
         exit(1);
     }
     else

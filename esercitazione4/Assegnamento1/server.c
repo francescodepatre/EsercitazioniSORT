@@ -117,7 +117,7 @@ int main()
                 LIST tmp = centri;
                 while (!isEmpty(tmp))
                 {
-                    // controllo se il fornitore può soddisfare la richiesta - DA MIGLIORARE
+
                     if (msg.quantity > tmp->item.requests)
                     {
                         centriOutput = EnqueueFirst(centriOutput, tmp->item);

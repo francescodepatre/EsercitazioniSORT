@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
 
     if (argc < 3)
     {
-        fprintf("%s <nome> <patients>\n", argv[0]);
+        fprintf(stderr, "%s <nome> <patients>\n", argv[0]);
         exit(1);
     }
     else

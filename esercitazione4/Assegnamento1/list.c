@@ -225,7 +225,7 @@ LIST Dequeue(LIST l, ItemType item)
 
 void PrintItem(ItemType item)
 {
-    printf("Nome centro: %s\nQuantità: %d\n", item.nome, item.requests);
+    printf("Nome: %s\nQuantità: %d\n", item.nome, item.requests);
 }
 
 /* Stampa a video la lista (esegue PrintItem() su tutti gli elementi) */

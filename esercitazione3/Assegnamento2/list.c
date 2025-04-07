@@ -15,7 +15,7 @@
 
 int itemCompare(ItemType item1, ItemType item2)
 {
-    if (item1.titolo == item2.titolo) /*** esempio ***/
+    if (item1.nome == item2.nome) /*** esempio ***/
         return 0;
     else
         return -1;

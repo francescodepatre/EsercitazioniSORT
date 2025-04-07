@@ -225,13 +225,7 @@ LIST Dequeue(LIST l, ItemType item)
 
 void PrintItem(ItemType item)
 {
-    // printf("\nAgent: %s\nQuantity: %d\nPrice: %d\nMinPrice: %d\n", item.agenteName, item.quantity, item.price, item.minPrice);
-    return;
-}
-
-void PrintRicavi(ItemType item)
-{
-    // printf("\nAgent: %s\nQuantity: %d\nPrice: %d\nMinPrice: %d\nRicavi: %d\n", item.agenteName, item.quantity, item.price, item.minPrice, item.ricavi);
+    // printf("\nName: %s\Temp: %d\nSockfd: %d\nReceived: %d\n", item.Name, item.temp, item.sockfd, item.nRecived);
     return;
 }
 
